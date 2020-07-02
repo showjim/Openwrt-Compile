@@ -134,7 +134,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: OpenWrt_firmware
-          path: ./bin/targets/
+          path: openwrt/bin/targets/
 
       - name: Create release
         if: github.event == 'push'
@@ -156,4 +156,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./bin/targets/*/*/
+          asset_path: openwrt/bin/targets/*/*/
