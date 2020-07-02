@@ -76,6 +76,7 @@ jobs:
           ./scripts/feeds install -a
 
       - name: Generate configuration file
+        working-directory: /workdir/openwrt
         run: |
           rm -f ./.config*
           touch ./.config
@@ -107,11 +108,13 @@ jobs:
           make defconfig
 
       - name: Make download
+        working-directory: /workdir/openwrt
         run: |
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
 
       - name: Compile firmware
+        working-directory: /workdir/openwrt
         run: |
           make -j$(nproc) || make -j1 V=s
           echo "======================="
@@ -124,6 +127,7 @@ jobs:
           du -h --max-depth=1 ./bin
 
       - name: Prepare artifact
+        working-directory: /workdir/openwrt
         run: find ./bin/targets/ -type d -name "packages" | xargs rm -rf {}
 
       - name: Upload artifact
