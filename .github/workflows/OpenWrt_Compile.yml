@@ -68,6 +68,7 @@ jobs:
           # git clone https://github.com/Ameykyl/luci-app-koolproxyR
           git clone https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git
           git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
+          git clone https://github.com/vernesong/OpenClash.git
 
       - name: Update feeds
         working-directory: /workdir/openwrt
@@ -105,6 +106,11 @@ jobs:
           CONFIG_PACKAGE_luci-theme-rosy=y
           CONFIG_PACKAGE_luci-theme-infinityfreedom=y
           # CONFIG_PACKAGE_luci-theme-netgear=y
+          EOF
+          
+          # OpenClash:
+          cat >> .config <<EOF
+          CONFIG_PACKAGE_luci-app-openclash=y
           EOF
           
           sed -i 's/^[ \t]*//g' ./.config
