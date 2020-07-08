@@ -100,7 +100,7 @@ jobs:
           
           # 取消编译UEFI固件:
           cat >> .config <<EOF
-          CONFIG_EFI_IMAGES is not set
+          CONFIG_EFI_IMAGES=n
           EOF
           
           # Compress firmware:
