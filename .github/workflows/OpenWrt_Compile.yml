@@ -75,9 +75,13 @@ jobs:
           
           # git clone --depth=1 https://github.com/KFERMercer/luci-app-serverchan
           # git clone --depth=1 https://github.com/Ameykyl/luci-app-koolproxyR
-          
+          # OpenClash
           git clone --depth=1 -b master https://github.com/vernesong/OpenClash.git
+          #AdguardHome
           git clone --depth=1 https://github.com/rufengsuixing/luci-app-adguardhome.git
+          # Add smartdns
+          svn co https://github.com/pymumu/smartdns/trunk/package/openwrt ../smartdns
+          svn co https://github.com/project-openwrt/openwrt/trunk/package/ntlf9t/luci-app-smartdns ../luci-app-smartdns
 
       - name: Update feeds
         working-directory: /workdir/openwrt
@@ -100,7 +104,7 @@ jobs:
           
           # 取消编译UEFI固件:
           cat >> .config <<EOF
-          CONFIG_EFI_IMAGES=n
+          # CONFIG_EFI_IMAGES is not set
           EOF
           
           # Compress firmware:
@@ -117,10 +121,24 @@ jobs:
           # CONFIG_PACKAGE_luci-theme-netgear=y
           EOF
           
-          # Other packages, OpenClash, AdGuard:
+          # Other packages:
           cat >> .config <<EOF
+          # OpenClash
           CONFIG_PACKAGE_luci-app-openclash=y
+          # AdGuardHome
           CONFIG_PACKAGE_luci-app-adguardhome=y
+          # passwall
+          CONFIG_PACKAGE_luci-app-passwall=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_socks=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_socks=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs=y
+          # smartDNS
+          CONFIG_PACKAGE_luci-app-smartdns=y
           EOF
           
           sed -i 's/^[ \t]*//g' ./.config
