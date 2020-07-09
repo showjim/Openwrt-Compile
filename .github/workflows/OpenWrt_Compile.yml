@@ -97,13 +97,10 @@ jobs:
           rm -f ./.config*
           touch ./.config
           
-          # 取消编译VMware镜像:
+          # 取消编译VMware镜像,UEFI固件:
           cat >> .config <<EOF
+          # CONFIG_TARGET_IMAGES_PAD is not set
           # CONFIG_VMDK_IMAGES is not set
-          EOF
-          
-          # 取消编译UEFI固件:
-          cat >> .config <<EOF
           # CONFIG_EFI_IMAGES is not set
           EOF
           
