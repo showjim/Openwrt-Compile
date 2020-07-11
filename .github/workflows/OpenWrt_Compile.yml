@@ -105,9 +105,9 @@ jobs:
           EOF
           
           # Compress firmware:
-          # cat >> .config <<EOF
-          # CONFIG_TARGET_IMAGES_GZIP=y
-          # EOF
+          cat >> .config <<EOF
+          CONFIG_TARGET_IMAGES_GZIP=y
+          EOF
           
           # LuCI theme:
           cat >> .config <<EOF
