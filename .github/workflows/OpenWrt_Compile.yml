@@ -74,7 +74,7 @@ jobs:
           git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
           
           # Add ServerChan
-          git clone --depth=1 https://github.com/KFERMercer/luci-app-serverchan
+          git clone --depth=1 https://github.com/tty228/luci-app-serverchan
           # git clone --depth=1 https://github.com/Ameykyl/luci-app-koolproxyR
           
           # OpenClash
