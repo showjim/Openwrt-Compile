@@ -73,8 +73,10 @@ jobs:
           git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git
           git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
           
-          # git clone --depth=1 https://github.com/KFERMercer/luci-app-serverchan
+          # Add ServerChan
+          git clone --depth=1 https://github.com/KFERMercer/luci-app-serverchan
           # git clone --depth=1 https://github.com/Ameykyl/luci-app-koolproxyR
+          
           # OpenClash
           git clone --depth=1 -b master https://github.com/vernesong/OpenClash.git
           #AdguardHome
@@ -136,6 +138,13 @@ jobs:
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs=y
           # smartDNS
           CONFIG_PACKAGE_luci-app-smartdns=y
+          # Add ServerChan
+          CONFIG_PACKAGE_luci-app-serverchan=y
+          EOF
+          
+          # Virtualization
+          cat >> .config <<EOF
+          CONFIG_PACKAGE_qemu-ga=y
           EOF
           
           sed -i 's/^[ \t]*//g' ./.config
