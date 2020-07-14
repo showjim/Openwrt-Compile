@@ -78,7 +78,7 @@ jobs:
           # git clone --depth=1 https://github.com/Ameykyl/luci-app-koolproxyR
           
           # OpenClash
-          git clone --depth=1 -b master https://github.com/vernesong/OpenClash.git
+          # git clone --depth=1 -b master https://github.com/vernesong/OpenClash.git
           
           # AdguardHome
           # git clone --depth=1 https://github.com/rufengsuixing/luci-app-adguardhome.git
@@ -86,7 +86,10 @@ jobs:
           # Add smartdns
           svn co https://github.com/pymumu/smartdns/trunk/package/openwrt ../smartdns
           svn co https://github.com/project-openwrt/openwrt/trunk/package/ntlf9t/luci-app-smartdns ../luci-app-smartdns
-
+          
+          # Open-app-filter
+          git clone --depth=1 https://github.com/destan19/OpenAppFilter.git
+          
       - name: Update feeds
         working-directory: /workdir/openwrt
         run: |
@@ -125,9 +128,9 @@ jobs:
           # Other packages:
           cat >> .config <<EOF
           # OpenClash
-          CONFIG_PACKAGE_luci-app-openclash=y
+          # CONFIG_PACKAGE_luci-app-openclash=y
           # AdGuardHome
-          CONFIG_PACKAGE_luci-app-adguardhome=y
+          # CONFIG_PACKAGE_luci-app-adguardhome=y
           # passwall
           CONFIG_PACKAGE_luci-app-passwall=y
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=y
@@ -144,11 +147,17 @@ jobs:
           # CONFIG_PACKAGE_luci-app-serverchan=y
           # disable xunlei
           # CONFIG_PACKAGE_luci-app-xlnetacc is not set
+          # Open app filter
+          CONFIG_PACKAGE_luci-app-oaf=y
           EOF
           
           # Virtualization
           cat >> .config <<EOF
           CONFIG_PACKAGE_qemu-ga=y
+          CONFIG_PACKAGE_kmod-irqbypass=y
+          CONFIG_PACKAGE_kmod-kvm-amd=y
+          CONFIG_PACKAGE_kmod-kvm-intel=y
+          CONFIG_PACKAGE_kmod-kvm-x86=y
           EOF
           
           sed -i 's/^[ \t]*//g' ./.config
