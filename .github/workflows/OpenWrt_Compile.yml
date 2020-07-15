@@ -153,7 +153,19 @@ jobs:
           
           # Virtualization
           cat >> .config <<EOF
+          # QEMU
+          CONFIG_PACKAGE_qemu-arm-softmmu=y
+          CONFIG_PACKAGE_qemu-bridge-helper=y
+          CONFIG_PACKAGE_qemu-firmware-efi=y
+          CONFIG_PACKAGE_qemu-firmware-pxe=y
+          CONFIG_PACKAGE_qemu-firmware-seabios=y
+          CONFIG_PACKAGE_qemu-firmware-seavgabios=y
           CONFIG_PACKAGE_qemu-ga=y
+          CONFIG_PACKAGE_qemu-img=y
+          CONFIG_PACKAGE_qemu-keymaps=y
+          CONFIG_PACKAGE_qemu-nbd=y
+          CONFIG_PACKAGE_qemu-x86_64-softmmu=y
+          
           CONFIG_PACKAGE_kmod-irqbypass=y
           CONFIG_PACKAGE_kmod-kvm-amd=y
           CONFIG_PACKAGE_kmod-kvm-intel=y
