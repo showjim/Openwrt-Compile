@@ -20,7 +20,7 @@ on:
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt
-  REPO_BRANCH: master
+  REPO_BRANCH: dev-19.07
   UPLOAD_COWTRANSFER: true
 
 jobs:
@@ -64,10 +64,10 @@ jobs:
           cd openwrt-packages
           
           # Add themes
-          git clone --depth=1 https://github.com/openwrt-develop/luci-theme-atmaterial.git
-          git clone --depth=1 https://github.com/rosywrt/luci-theme-rosy
-          git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git
-          git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
+          # git clone --depth=1 https://github.com/openwrt-develop/luci-theme-atmaterial.git
+          # git clone --depth=1 https://github.com/rosywrt/luci-theme-rosy
+          # git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git
+          # git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
           
           # Add ServerChan
           # git clone --depth=1 https://github.com/tty228/luci-app-serverchan
@@ -112,16 +112,16 @@ jobs:
           # EOF
           
           # LuCI theme:
-          cat >> .config <<EOF
-          CONFIG_PACKAGE_luci-theme-argon=y
-          CONFIG_PACKAGE_luci-theme-atmaterial=y
-          CONFIG_PACKAGE_luci-theme-rosy=y
-          CONFIG_PACKAGE_luci-theme-infinityfreedom=y
+          # cat >> .config <<EOF
+          # CONFIG_PACKAGE_luci-theme-argon=y
+          # CONFIG_PACKAGE_luci-theme-atmaterial=y
+          # CONFIG_PACKAGE_luci-theme-rosy=y
+          # CONFIG_PACKAGE_luci-theme-infinityfreedom=y
           # CONFIG_PACKAGE_luci-theme-netgear=y
-          EOF
+          # EOF
           
           # Other packages:
-          cat >> .config <<EOF
+          # cat >> .config <<EOF
           # OpenClash
           # CONFIG_PACKAGE_luci-app-openclash=y
           # AdGuardHome
@@ -136,7 +136,7 @@ jobs:
           # CONFIG_PACKAGE_luci-app-oaf=y
           # netdata
           # CONFIG_PACKAGE_luci-app-netdata=y
-          EOF
+          # EOF
           
           # Virtualization
           cat >> .config <<EOF
@@ -154,7 +154,7 @@ jobs:
           # CONFIG_PACKAGE_qemu-x86_64-softmmu=y
           
           # CONFIG_PACKAGE_kmod-irqbypass=y
-          CONFIG_PACKAGE_kmod-kvm-amd=y
+          # CONFIG_PACKAGE_kmod-kvm-amd=y
           CONFIG_PACKAGE_kmod-kvm-intel=y
           CONFIG_PACKAGE_kmod-kvm-x86=y
           EOF
