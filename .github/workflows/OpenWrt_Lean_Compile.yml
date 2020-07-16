@@ -72,6 +72,7 @@ jobs:
           git clone --depth=1 https://github.com/rosywrt/luci-theme-rosy
           git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git
           git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
+          git clone --depth=1 https://github.com/Leo-Jo-My/luci-theme-opentomcat.git
           
           # Add ServerChan
           # git clone --depth=1 https://github.com/tty228/luci-app-serverchan
@@ -122,7 +123,7 @@ jobs:
           CONFIG_PACKAGE_luci-theme-atmaterial=y
           CONFIG_PACKAGE_luci-theme-rosy=y
           CONFIG_PACKAGE_luci-theme-infinityfreedom=y
-          # CONFIG_PACKAGE_luci-theme-netgear=y
+          CONFIG_PACKAGE_luci-theme-opentomcat=y
           EOF
           
           # Other packages:
