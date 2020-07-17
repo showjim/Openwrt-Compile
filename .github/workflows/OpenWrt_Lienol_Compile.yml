@@ -48,9 +48,6 @@ jobs:
         REPO_URL: https://github.com/Lienol/openwrt
         REPO_BRANCH: dev-master
       run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH --depth=1 openwrt
-    
-    - name: Load Custom Configuration
-      run: mv $CONFIG_FILE ./.config
       
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
@@ -58,40 +55,50 @@ jobs:
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
     
+    - name: Clone Config
+      env: 
+        REPO_URL: https://github.com/showjim/Openwrt-Compile
+      run: git clone --depth 1 $REPO_URL openwrt-config
+    
     - name: Custom configure file
       run: |
           cd openwrt
           rm -f .config
-          cp ../openwrt-config/x64-master .config
+          cp ../openwrt-config/Lienol.config .config
           
     - name: Make Defconfig
       run: |
           cd openwrt
           make defconfig
+          
     - name: Make download
       run: |
           cd openwrt
           make download -j8
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
+          
     - name: Multi-thread compile
       run: |
           cd openwrt
           echo -e "$(nproc) thread build."
           make -j$(nproc) V=s
+          
     - name: Single-thread compile
       if: failure()
       run: |
           cd openwrt
           make -j1 V=s
+          
     - name: Assemble artifact
       run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
           find openwrt/bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./artifact/
           find openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
+          
     - name: Upload artifact
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt firmware
+        name: OpenWrt firmware Lienol
         path: ./artifact/
