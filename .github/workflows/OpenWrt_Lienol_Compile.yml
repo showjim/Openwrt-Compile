@@ -57,6 +57,9 @@ jobs:
 
         # Add themes
         git clone --depth=1 https://github.com/Leo-Jo-My/luci-theme-opentomcat.git
+        
+        # hello world
+        git clone --depth=1 https://github.com/fw876/helloworld
       
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
