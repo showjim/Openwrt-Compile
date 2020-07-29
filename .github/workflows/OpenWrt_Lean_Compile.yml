@@ -171,8 +171,13 @@ jobs:
           
           # CONFIG_PACKAGE_kmod-irqbypass=y
           # CONFIG_PACKAGE_kmod-kvm-amd=y
-          CONFIG_PACKAGE_kmod-kvm-intel=y
-          CONFIG_PACKAGE_kmod-kvm-x86=y
+          # CONFIG_PACKAGE_kmod-kvm-intel=y
+          # CONFIG_PACKAGE_kmod-kvm-x86=y
+          EOF
+          
+          # arp-scan
+          cat >> .config <<EOF
+          CONFIG_PACKAGE_dsmboot=y
           EOF
           
           sed -i 's/^[ \t]*//g' ./.config
