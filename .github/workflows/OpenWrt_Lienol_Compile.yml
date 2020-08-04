@@ -20,7 +20,7 @@ on:
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt
-  REPO_BRANCH: dev-master #dev-19.07
+  REPO_BRANCH: dev-19.07 #dev-master #dev-19.07
   CONFIG_FILE: Lienol.config
 
 jobs:
