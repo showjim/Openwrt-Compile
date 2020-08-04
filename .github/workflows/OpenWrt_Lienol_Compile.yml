@@ -97,7 +97,7 @@ jobs:
       run: |
           cd openwrt
           echo -e "$(nproc) thread build."
-          make -j$(nproc) V=s
+          make -j3 V=s
           
     - name: Single-thread compile
       if: failure()
