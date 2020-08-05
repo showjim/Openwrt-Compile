@@ -79,7 +79,7 @@ jobs:
       run: |
           cd openwrt
           rm -f .config
-          cp ../openwrt-config/Lienol.config .config
+          cp ../openwrt-config/Lienol_19.07.config .config
           
     - name: Make Defconfig
       run: |
