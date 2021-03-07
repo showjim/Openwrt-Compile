@@ -205,8 +205,12 @@ jobs:
       - name: Prepare artifact
         working-directory: /workdir/openwrt
         run: |
-          find ./bin/targets/ -type d -name "packages" | xargs rm -rf {}
-          echo "::set-env name=FIRMWARE::$PWD"
+          # find ./bin/targets/ -type d -name "packages" | xargs rm -rf {}
+          # echo "::set-env name=FIRMWARE::$PWD"
+          cd openwrt/bin/targets/*/*
+          rm -rf packages
+          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+          echo "::set-output name=status::success"
 
       - name: Upload artifact
         uses: actions/upload-artifact@master
